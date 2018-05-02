@@ -1,27 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Drawing;
-using System.Windows.Forms;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Runtime.InteropServices;
 
-namespace WpfApplication1
+namespace 孵化
 {
-    /// <summary>
-    /// MainWindow.xaml 的交互逻辑
-    /// </summary>
-    public partial class MainWindow : Window
+	/// <summary>
+	/// MainWindow.xaml 的交互逻辑
+	/// </summary>
+	public partial class MainWindow : Window
     {
         private Boolean isFullscreen = false;
         public struct State
@@ -51,22 +38,22 @@ namespace WpfApplication1
         {
             InitializeComponent();
             this.state = new State(this.WindowState, this.WindowStyle, this.ResizeMode, this.Topmost, this.Left, this.Top, this.Width, this.Height);
-            
-#if RELEASE
-            this.FullScreen();
+#if DEBUG
+#else
+            MainWindow.FullScreen(this);
 #endif
         }
 
-        private void FullScreen()
+        public static void FullScreen(object sender)
         {
-            this.WindowState = System.Windows.WindowState.Normal;
-            this.WindowStyle = System.Windows.WindowStyle.None;
-            this.ResizeMode = System.Windows.ResizeMode.NoResize;
-            this.Topmost = true;
-            this.Left = 0.0;
-            this.Top = 0.0;
-            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
-            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+            (sender as Window).WindowState = System.Windows.WindowState.Normal;
+            (sender as Window).WindowStyle = System.Windows.WindowStyle.None;
+            (sender as Window).ResizeMode = System.Windows.ResizeMode.NoResize;
+            (sender as Window).Topmost = true;
+            (sender as Window).Left = 0.0;
+            (sender as Window).Top = 0.0;
+			(sender as Window).Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+            (sender as Window).Height = System.Windows.SystemParameters.PrimaryScreenHeight;
         }
         private void ResumeWindowState()
         {
@@ -90,18 +77,25 @@ namespace WpfApplication1
             this.state.width = this.Width;
             this.state.height = this.Height;
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (!this.isFullscreen)
-            {
-                this.DumpWindowState();
-                this.FullScreen();
-            }
-            else
-            {
-                this.ResumeWindowState();
-            }
-            this.isFullscreen = !this.isFullscreen;
-        }
-    }
+
+		private void Model0EnterButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Model1EnterButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Model2EnterButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Model3EnterButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }

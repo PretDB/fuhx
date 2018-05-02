@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 using System.IO;
 using System.Reflection;
-using Microsoft.VisualBasic;
-using System.Resources;
 
 namespace WindowsFormsApp1
 {
@@ -21,7 +12,6 @@ namespace WindowsFormsApp1
         Boolean m_IsFullScreen = false;//标记是否全屏
         Assembly _assembly;
         Stream _imageStream;
-        StreamReader _textStreamReader;
         Bitmap pic ;
 
         public Form1()
@@ -29,10 +19,10 @@ namespace WindowsFormsApp1
             InitializeComponent();
 
 #if DEBUG
-            this.GoFullScreenMode();
 #endif
 
 #if REALSE
+            this.GoFullScreenMode();
 #endif
         }
 
@@ -47,11 +37,8 @@ namespace WindowsFormsApp1
         }
 
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void PictureBox1_Click(object sender, EventArgs e)
         {
-            this.pictureBox1.Height = this.Height;
-            this.pictureBox1.Top = 0;
-            this.pictureBox1.Image = pic;
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -106,8 +93,6 @@ namespace WindowsFormsApp1
             }
             this.m_IsFullScreen = !this.m_IsFullScreen;
         }
-
-
     }
 }
 

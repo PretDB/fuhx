@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace 孵化.Properties
+namespace _1.Properties
 {
 
 
