@@ -98,10 +98,99 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="res\startup.png" />
+    <Resource Include="res\0.png" />
+    <Resource Include="res\1.png" />
+    <Resource Include="res\2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="res\firstScene\contents\content1.png" />
+    <Resource Include="res\content0\01.png" />
+    <Resource Include="res\content0\02.png" />
+    <Resource Include="res\content0\03.png" />
+    <Resource Include="res\content0\04.png" />
+    <Resource Include="res\content0\05.png" />
+    <Resource Include="res\content0\06.png" />
+    <Resource Include="res\content0\07.png" />
+    <Resource Include="res\content0\08.png" />
+    <Resource Include="res\content0\09.png" />
+    <Resource Include="res\content0\10.png" />
+    <Resource Include="res\content0\11.png" />
+    <Resource Include="res\content0\12.png" />
+    <Resource Include="res\content0\13.png" />
+    <Resource Include="res\content0\14.png" />
+    <Resource Include="res\content0\15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\content1\01.png" />
+    <Resource Include="res\content1\10.png" />
+    <Resource Include="res\content1\11.png" />
+    <Resource Include="res\content1\12.png" />
+    <Resource Include="res\content1\13.png" />
+    <Resource Include="res\content1\14.png" />
+    <Resource Include="res\content1\15.png" />
+    <Resource Include="res\content1\16.png" />
+    <Resource Include="res\content1\17.png" />
+    <Resource Include="res\content1\18.png" />
+    <Resource Include="res\content1\19.png" />
+    <Resource Include="res\content1\02.png" />
+    <Resource Include="res\content1\20.png" />
+    <Resource Include="res\content1\21.png" />
+    <Resource Include="res\content1\22.png" />
+    <Resource Include="res\content1\23.png" />
+    <Resource Include="res\content1\24.png" />
+    <Resource Include="res\content1\03.png" />
+    <Resource Include="res\content1\04.png" />
+    <Resource Include="res\content1\05.png" />
+    <Resource Include="res\content1\06.png" />
+    <Resource Include="res\content1\07.png" />
+    <Resource Include="res\content1\08.png" />
+    <Resource Include="res\content1\09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\content2\01.png" />
+    <Resource Include="res\content2\10.png" />
+    <Resource Include="res\content2\11.png" />
+    <Resource Include="res\content2\12.png" />
+    <Resource Include="res\content2\13.png" />
+    <Resource Include="res\content2\14.png" />
+    <Resource Include="res\content2\15.png" />
+    <Resource Include="res\content2\16.png" />
+    <Resource Include="res\content2\02.png" />
+    <Resource Include="res\content2\03.png" />
+    <Resource Include="res\content2\04.png" />
+    <Resource Include="res\content2\05.png" />
+    <Resource Include="res\content2\06.png" />
+    <Resource Include="res\content2\07.png" />
+    <Resource Include="res\content2\08.png" />
+    <Resource Include="res\content2\09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\content3\01.png" />
+    <Resource Include="res\content3\10.png" />
+    <Resource Include="res\content3\11.png" />
+    <Resource Include="res\content3\12.png" />
+    <Resource Include="res\content3\13.png" />
+    <Resource Include="res\content3\02.png" />
+    <Resource Include="res\content3\03.png" />
+    <Resource Include="res\content3\04.png" />
+    <Resource Include="res\content3\05.png" />
+    <Resource Include="res\content3\06.png" />
+    <Resource Include="res\content3\07.png" />
+    <Resource Include="res\content3\08.png" />
+    <Resource Include="res\content3\09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\content4\01.png" />
+    <Resource Include="res\content4\10.png" />
+    <Resource Include="res\content4\11.png" />
+    <Resource Include="res\content4\12.png" />
+    <Resource Include="res\content4\02.png" />
+    <Resource Include="res\content4\03.png" />
+    <Resource Include="res\content4\04.png" />
+    <Resource Include="res\content4\05.png" />
+    <Resource Include="res\content4\06.png" />
+    <Resource Include="res\content4\07.png" />
+    <Resource Include="res\content4\08.png" />
+    <Resource Include="res\content4\09.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
