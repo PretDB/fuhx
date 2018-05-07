@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <Image Name="content0" Source="res/content0/03.png" Grid.Column="0" Stretch="Fill" Visibility="Hidden"/>
+            <Image Name="content0" Source="res/content0/01.png" Grid.Column="0" Stretch="Fill" Visibility="Hidden"/>
             <Grid Name="Model0Startup" Grid.Column="0" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="9.2*"/>
@@ -33,7 +33,7 @@
                     <ColumnDefinition Width="6*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Name="Model0EnterButton" Grid.Column="1" Grid.Row="1" Opacity="0" Click="Model0EnterButton_Click"/>
+                <Button Name="Model0EnterButton" Grid.Column="1" Grid.Row="1" Opacity="0" Click="Model0EnterButton_Click" IsEnabled="False"/>
             </Grid>
             <Grid Name="Model0Content" Grid.Column="0">
                 <Grid.ColumnDefinitions>
@@ -77,20 +77,23 @@
                 </Grid>
                 <Grid Name="ButArea0" Grid.Row="3">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="91*"/>
-                        <RowDefinition Height="7*"/>
-                        <RowDefinition Height="177*"/>
+                        <RowDefinition Height="90*"/>
+                        <RowDefinition Height="11*"/>
+                        <RowDefinition Height="174*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="56*"/>
-                        <ColumnDefinition Width="69*"/>
-                        <ColumnDefinition Width="66*"/>
+                        <ColumnDefinition Width="114*"/>
+                        <ColumnDefinition Width="33*"/>
+                        <ColumnDefinition Width="29*"/>
+                        <ColumnDefinition Width="14*"/>
                     </Grid.ColumnDefinitions>
+                    <Button Name="ButArea0Previous" Opacity="0" Grid.Column="1" Grid.Row="1" Click="ButArea0Previous_Click" Grid.ColumnSpan="1"/>
+                    <Button Name="ButArea0Next" Opacity="0" Grid.Column="2" Grid.Row="1" Click="ButArea0Next_Click"/>
                 </Grid>
             </Grid>
 
 
-            <Image Name="content1" Source="res/content1/01.png" Grid.Column="1" Stretch="Fill" Visibility="Visible"/>
+            <Image Name="content1" Source="res/content1/01.png" Grid.Column="1" Stretch="Fill" Visibility="Hidden"/>
             <Grid Name="Model1Startup" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="9.2*"/>
@@ -102,7 +105,7 @@
                     <ColumnDefinition Width="4.27*"/>
                     <ColumnDefinition Width="6*"/>
                 </Grid.ColumnDefinitions>
-                <Button Name="Model1EnterButton" Grid.Column="1" Grid.Row="1" Opacity="0" Click="Model1EnterButton_Click"/>
+                <Button Name="Model1EnterButton" Grid.Column="1" Grid.Row="1" Opacity="0" Click="Model1EnterButton_Click" IsEnabled="False"/>
             </Grid>
             <Grid Name="Model1Content" Grid.Column="1">
                 <Grid.ColumnDefinitions>
@@ -135,21 +138,24 @@
                 </Grid>
                 <Grid Name="ButArea1" Grid.Row="3">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="34*"/>
-                        <RowDefinition Height="41*"/>
-                        <RowDefinition Height="63*"/>
+                        <RowDefinition Height="137*"/>
+                        <RowDefinition Height="9*"/>
+                        <RowDefinition Height="129*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70*"/>
-                        <ColumnDefinition Width="51*"/>
-                        <ColumnDefinition Width="69*"/>
+                        <ColumnDefinition Width="148*"/>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="21*"/>
                     </Grid.ColumnDefinitions>
+                    <Button Name="ButArea1Next" Opacity="0" Grid.Row="1" Grid.Column="1" Click="ButArea1Next_Click"/>
+                    <Button Name="ButArea1Previous" Opacity="0" Grid.Row="1" Grid.Column="2" Click="ButArea1Previous_Click"/>
                 </Grid>
             </Grid>
 
 
 
-            <Image Name="content2" Source="res/content2/01.png" Grid.Column="2" Stretch="Fill" Visibility="Visible"/>
+            <Image Name="content2" Source="res/content2/01.png" Grid.Column="2" Stretch="Fill" Visibility="Hidden"/>
             <Grid Name="Model2Startup" Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="9.2*"/>
@@ -161,17 +167,16 @@
                     <ColumnDefinition Width="4.27*"/>
                     <ColumnDefinition Width="6*"/>
                 </Grid.ColumnDefinitions>
-                <Button Name="Model2EnterButton" Grid.Column="1" Grid.Row="1" Opacity="0" Click="Model2EnterButton_Click"/>
+                <Button Name="Model2EnterButton" Grid.Column="1" Grid.Row="1" Opacity="0" Click="Model2EnterButton_Click" IsEnabled="False"/>
             </Grid>
             <Grid Name="Model2Content" Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="70*"/>
-                    <RowDefinition Height="12*"/>
-                    <RowDefinition Height="147*"/>
-                    <RowDefinition Height="275*"/>
+                    <RowDefinition Height="71*"/>
+                    <RowDefinition Height="11*"/>
+                    <RowDefinition Height="422*"/>
                 </Grid.RowDefinitions>
 
                 <Grid Name="Nav2" Grid.Row="1">
@@ -191,24 +196,25 @@
                     <Button Name="Nav2ProgressButton" Opacity="0" Grid.Column="4" Click="Nav2ProgressButton_Click"/>
                     <Button Name="Nav2ReturnButton" Opacity="0" Grid.Column="5" Click="Nav2ReturnButton_Click"/>
                 </Grid>
-                <Grid Name="ButArea2" Grid.Row="3">
+                <Grid Name="ButArea2" Grid.Row="2">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="98*"/>
-                        <RowDefinition Height="19*"/>
-                        <RowDefinition Height="159*"/>
+                        <RowDefinition Height="120*"/>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="85*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="76*"/>
-                        <ColumnDefinition Width="39*"/>
-                        <ColumnDefinition Width="76*"/>
+                        <ColumnDefinition Width="153*"/>
+                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="18*"/>
                     </Grid.ColumnDefinitions>
+                    <Button Name="ButArea2Next" Opacity="0" Grid.Column="1" Grid.Row="1" Click="ButArea2Next_Click"/>
 
                 </Grid>
             </Grid>
 
 
 
-            <Image Name="content3" Source="res/content3/01.png" Grid.Column="3" Stretch="Fill" Visibility="Visible"/>
+            <Image Name="content3" Source="res/content3/01.png" Grid.Column="3" Stretch="Fill" Visibility="Hidden"/>
             <Grid Name="Model3Startup" Grid.Column="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="9.2*"/>
@@ -220,7 +226,7 @@
                     <ColumnDefinition Width="4.27*"/>
                     <ColumnDefinition Width="6*"/>
                 </Grid.ColumnDefinitions>
-                <Button Name="Model3EnterButton" Grid.Column="1" Grid.Row="1" Opacity="0" Click="Model3EnterButton_Click"/>
+                <Button Name="Model3EnterButton" Grid.Column="1" Grid.Row="1" Opacity="0" Click="Model3EnterButton_Click" IsEnabled="False"/>
             </Grid>
             <Grid Name="Model3Content" Grid.Column="3">
                 <Grid.ColumnDefinitions>
@@ -233,7 +239,7 @@
                     <RowDefinition Height="10.04*"/>
                 </Grid.RowDefinitions>
 
-                <Grid Name="Nav31" Grid.Row="1">
+                <Grid Name="Nav31" Grid.Row="1" Visibility="Visible">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Name="Nav31BlankL" Width="18*"/>
                         <ColumnDefinition Name="Nav31Intro" Width="21*"/>
@@ -254,18 +260,39 @@
                     <Button Name="Nav31PartnerButton" Opacity="0" Grid.Column="6" Click="Nav31PartnerButton_Click"/>
                     <Button Name="Nav31ReturnButton" Opacity="0" Grid.Column="7" Click="Nav31ReturnButton_Click"/>
                 </Grid>
-                <Grid Name="ButArea3" Grid.Row="3">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="5*"/>
-                        <RowDefinition Height="21*"/>
-                    </Grid.RowDefinitions>
+                <Grid Name="Nav32" Grid.Row="1" Visibility="Visible">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="65*"/>
-                        <ColumnDefinition Width="43*"/>
-                        <ColumnDefinition Width="82*"/>
+                        <ColumnDefinition Name="Nav32BlankL" Width="19*"/>
+                        <ColumnDefinition Name="Nav32Intro" Width="25*"/>
+                        <ColumnDefinition Name="Nav32Affar" Width="26*"/>
+                        <ColumnDefinition Name="Nav32Partner" Width="26*"/>
+                        <ColumnDefinition Name="Nav32Product" Width="25*"/>
+                        <ColumnDefinition Name="Nav32Character" Width="26*"/>
+                        <ColumnDefinition Name="Nav32Return" Width="19*"/>
+                        <ColumnDefinition Name="Nav32BlankR" Width="24*"/>
                     </Grid.ColumnDefinitions>
 
+                    <Button Name="Nav32IntroButton" Opacity="0" Grid.Column="1" Click="Nav32IntroButton_Click"/>
+                    <Button Name="Nav32AffarButton" Opacity="0" Grid.Column="2" Click="Nav32AffarButton_Click"/>
+                    <Button Name="Nav32PartnerButton" Opacity="0" Grid.Column="3" Click="Nav32PartnerButton_Click"/>
+                    <Button Name="Nav32ProductButton" Opacity="0" Grid.Column="4" Click="Nav32ProductButton_Click"/>
+                    <Button Name="Nav32CharacterButton" Opacity="0" Grid.Column="5" Click="Nav32CharacterButton_Click"/>
+                    <Button Name="Nav32ReturnButton" Opacity="0" Grid.Column="6" Click="Nav32ReturnButton_Click"/>
+                </Grid>
+                <Grid Name="ButArea3" Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="103*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="164*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="148*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="11*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Name="ButArea3Next" Opacity="0" Grid.Row="1" Grid.Column="1" Click="ButArea3Next_Click"/>
+                    <Button Name="ButArea3Previous" Opacity="0" Grid.Row="1" Grid.Column="2" Click="ButArea3Previous_Click"/>
                 </Grid>
             </Grid>
 
