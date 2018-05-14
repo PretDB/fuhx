@@ -5,19 +5,32 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Timers;
 using System.Threading;
+using System.Windows.Threading;
+using System.Runtime.InteropServices;
 
 namespace 孵化
 {
+    [StructLayout(LayoutKind.Sequential)]
+    struct PLASTINPUTINFO
+    {
+        public static readonly int Sizeof = Marshal.SizeOf(typeof(PLASTINPUTINFO));
+
+        [MarshalAs(UnmanagedType.U4)]
+        public Int32 cbSize;
+        [MarshalAs(UnmanagedType.U4)]
+        public UInt32 dwTime;
+    }
+
     public enum MainPic
     {
         init,
         first,
         second
     }
-	/// <summary>
-	/// MainWindow.xaml 的交互逻辑
-	/// </summary>
-	public partial class MainWindow : Window
+    /// <summary>
+    /// MainWindow.xaml 的交互逻辑
+    /// </summary>
+    public partial class MainWindow : Window
     {
         private bool isFullscreen = false;
         private bool[] isModelIn = new bool[5];
@@ -105,7 +118,20 @@ namespace 孵化
             }
         }
 
-        private System.Timers.Timer timer = new System.Timers.Timer(1000);
+        private DispatcherTimer timer;
+        private readonly static int defaultCheckCount = 2;  // Unit in second
+        private static int _checkCount = defaultCheckCount;
+        private static int checkCount
+        {
+            get
+            {
+                return _checkCount;
+            }
+            set
+            {
+                _checkCount = value;
+            }
+        }
 
         public struct State
         {
@@ -130,13 +156,20 @@ namespace 孵化
             public double height;
         }
         private State state;
+
+
+
+
+
         public MainWindow()
         {
             InitializeComponent();
             this.state = new State(this.WindowState, this.WindowStyle, this.ResizeMode, this.Topmost, this.Left, this.Top, this.Width, this.Height);
-            this.timer.Elapsed += this.Timer_Elapsed;
-            this.timer.AutoReset = true;
-            this.timer.Enabled = false;
+            this.timer = new DispatcherTimer();
+            this.timer.Interval = new TimeSpan(0, 0, 1);
+            this.timer.Tick += new EventHandler(this.Timer_Tick);
+            timer.Start();
+
 
 #if !DEBUG
             MainWindow.FullScreen(this);
@@ -151,7 +184,7 @@ namespace 孵化
             (sender as Window).Topmost = true;
             (sender as Window).Left = 0.0;
             (sender as Window).Top = 0.0;
-			(sender as Window).Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+            (sender as Window).Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             (sender as Window).Height = System.Windows.SystemParameters.PrimaryScreenHeight;
         }
         private void ResumeWindowState()
@@ -177,9 +210,9 @@ namespace 孵化
             this.state.height = this.Height;
         }
 
-		private void Model0EnterButton_Click(object sender, RoutedEventArgs e)
-		{
-            if(this.currentMainPic == MainPic.first && this.isModelIn[0] == false)
+        private void Model0EnterButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.currentMainPic == MainPic.first && this.isModelIn[0] == false)
             {
                 this.isModelIn[0] = true;
                 this.Model0EnterButton.IsEnabled = false;
@@ -187,11 +220,11 @@ namespace 孵化
                 this.content0CurrentPage = 1;
                 this.content0.Visibility = Visibility.Visible;
             }
-		}
+        }
 
-		private void Model1EnterButton_Click(object sender, RoutedEventArgs e)
-		{
-            if(this.currentMainPic == MainPic.first && this.isModelIn[1] == false)
+        private void Model1EnterButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.currentMainPic == MainPic.first && this.isModelIn[1] == false)
             {
                 this.isModelIn[1] = true;
                 this.Model1EnterButton.IsEnabled = false;
@@ -200,11 +233,11 @@ namespace 孵化
                 this.content1.Visibility = Visibility.Visible;
             }
 
-		}
+        }
 
-		private void Model2EnterButton_Click(object sender, RoutedEventArgs e)
-		{
-            if(this.currentMainPic == MainPic.first && this.isModelIn[2] == false)
+        private void Model2EnterButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.currentMainPic == MainPic.first && this.isModelIn[2] == false)
             {
                 this.isModelIn[2] = true;
                 this.Model2EnterButton.IsEnabled = false;
@@ -214,7 +247,7 @@ namespace 孵化
 
             }
 
-		}
+        }
 
         private void Model3EnterButton_Click(object sender, RoutedEventArgs e)
         {
@@ -255,6 +288,22 @@ namespace 孵化
             i.EndInit();
             this.MainPicImage.Source = i;
 
+            ResumeScreenState(sender, e);
+        }
+
+        private void GoBackToFirstPic(object sender, RoutedEventArgs e)
+        {
+            BitmapImage i = new BitmapImage();
+            i.BeginInit();
+            i.UriSource = new Uri("res/0.png", UriKind.RelativeOrAbsolute);
+            i.EndInit();
+            this.currentMainPic = MainPic.init;
+            this.MainPicImage.Source = i;
+            this.ResumeScreenState(sender, e);
+        }
+
+        private void ResumeScreenState(object sender, RoutedEventArgs e)
+        {
             this.content0.Visibility = Visibility.Hidden;
             this.content1.Visibility = Visibility.Hidden;
             this.content2.Visibility = Visibility.Hidden;
@@ -265,7 +314,7 @@ namespace 孵化
             this.Model2EnterButton.IsEnabled = true;
             this.Model3EnterButton.IsEnabled = true;
 
-            for(int a = 0; a < this.isModelIn.Length - 1; a++)
+            for (int a = 0; a < this.isModelIn.Length - 1; a++)
             {
                 this.isModelIn[a] = false;
             }
@@ -279,19 +328,6 @@ namespace 孵化
             this.Nav32ReturnButton_Click(sender, e);
         }
 
-        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            this.currentMainPic = MainPic.init;
-            this.content0.Visibility = Visibility.Hidden;
-            this.content1.Visibility = Visibility.Hidden;
-            this.content2.Visibility = Visibility.Hidden;
-            this.content3.Visibility = Visibility.Hidden;
-
-            this.Model0EnterButton.IsEnabled = false;
-            this.Model1EnterButton.IsEnabled = false;
-            this.Model2EnterButton.IsEnabled = false;
-            this.Model3EnterButton.IsEnabled = false;
-        }
 
         private void Nav0IntroButton_Click(object sender, RoutedEventArgs e)
         {
@@ -506,7 +542,7 @@ namespace 孵化
             this.ButArea2.ColumnDefinitions[0].Width = new GridLength(73, GridUnitType.Star);
             this.ButArea2.ColumnDefinitions[1].Width = new GridLength(13, GridUnitType.Star);
             this.ButArea2.ColumnDefinitions[2].Width = new GridLength(9, GridUnitType.Star);
-            
+
         }
 
         private void Nav2PlanButton_Click(object sender, RoutedEventArgs e)
@@ -589,7 +625,7 @@ namespace 孵化
         private void Nav31GoodnessButton_Click(object sender, RoutedEventArgs e)
         {
             this.content3CurrentPage = 8;
-            
+
             this.ButArea3.RowDefinitions[0].Height = new GridLength(34, GridUnitType.Star);
             this.ButArea3.RowDefinitions[1].Height = new GridLength(10, GridUnitType.Star);
             this.ButArea3.RowDefinitions[2].Height = new GridLength(231, GridUnitType.Star);
@@ -647,7 +683,7 @@ namespace 孵化
 
             this.ButArea3Next.Visibility = Visibility.Visible;
             this.ButArea3Previous.Visibility = Visibility.Hidden;
-            
+
         }
 
         private void Nav32CharacterButton_Click(object sender, RoutedEventArgs e)
@@ -806,7 +842,7 @@ namespace 孵化
 
                 case 2:
                     this.content1CurrentPage = 3;
-                    
+
                     this.ButArea1.RowDefinitions[0].Height = new GridLength(72, GridUnitType.Star);
                     this.ButArea1.RowDefinitions[1].Height = new GridLength(14, GridUnitType.Star);
                     this.ButArea1.RowDefinitions[2].Height = new GridLength(189, GridUnitType.Star);
@@ -996,7 +1032,7 @@ namespace 孵化
 
                 case 17:
                     this.content1CurrentPage = 18;
-                    
+
                     this.ButArea1.RowDefinitions[0].Height = new GridLength(167, GridUnitType.Star);
                     this.ButArea1.RowDefinitions[1].Height = new GridLength(11, GridUnitType.Star);
                     this.ButArea1.RowDefinitions[2].Height = new GridLength(97, GridUnitType.Star);
@@ -1095,7 +1131,7 @@ namespace 孵化
 
         private void ButArea1Previous_Click(object sender, RoutedEventArgs e)
         {
-            switch(this.content1CurrentPage)
+            switch (this.content1CurrentPage)
             {
                 case 2:
                     this.Nav1BackgroundButton_Click(sender, e);
@@ -1518,7 +1554,7 @@ namespace 孵化
             }
             else
             {
-                switch(this.content3CurrentPage)
+                switch (this.content3CurrentPage)
                 {
                     case 4:
                         this.content3CurrentPage = 5;
@@ -1687,7 +1723,7 @@ namespace 孵化
             }
             else
             {
-                switch(this.content3CurrentPage)
+                switch (this.content3CurrentPage)
                 {
                     case 5:
                         this.Nav31ProductButton_Click(sender, e);
@@ -1730,6 +1766,50 @@ namespace 孵化
 
             }
 
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+
+            if (HaveUsedTo())
+            {
+                if (--checkCount == 0)
+                {
+                    checkCount = defaultCheckCount;
+
+                    timer.Stop();
+
+                    // Some actions here
+                    this.GoBackToFirstPic(sender, new RoutedEventArgs());
+
+
+                    timer.Start();
+                }
+            }
+            else
+            {
+                checkCount = defaultCheckCount;
+            }
+        }
+
+        private bool HaveUsedTo()
+        {
+            long noActionTime = GetNoActionTime() ;
+            return noActionTime / 1000 > 1;
+        }
+
+        [DllImport("user32.dll")]
+        static extern bool GetLastInputInfo(ref PLASTINPUTINFO pLASTINPUTINFO);
+
+        private static long GetNoActionTime()
+        {
+            PLASTINPUTINFO pLASTINPUTINFO = new PLASTINPUTINFO();
+            pLASTINPUTINFO.cbSize = Marshal.SizeOf(pLASTINPUTINFO);
+            if (!GetLastInputInfo(ref pLASTINPUTINFO))
+            {
+                return 0;
+            }
+            return Environment.TickCount - pLASTINPUTINFO.dwTime;
         }
     }
 }
