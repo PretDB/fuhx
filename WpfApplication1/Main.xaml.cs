@@ -49,6 +49,7 @@ namespace 孵化
                 i.BeginInit();
                 string s = string.Format("res/content0/{0:D2}.png", value);
                 i.UriSource = new Uri(s, UriKind.RelativeOrAbsolute);
+                i.DecodePixelWidth = 1920;
                 i.EndInit();
                 this.content0.Source = i;
 
@@ -67,6 +68,7 @@ namespace 孵化
                 i.BeginInit();
                 string s = string.Format("res/content1/{0:D2}.png", value);
                 i.UriSource = new Uri(s, UriKind.RelativeOrAbsolute);
+                i.DecodePixelWidth = 1920;
                 i.EndInit();
                 this.content1.Source = i;
             }
@@ -84,6 +86,7 @@ namespace 孵化
                 i.BeginInit();
                 string s = string.Format("res/content2/{0:D2}.png", value);
                 i.UriSource = new Uri(s, UriKind.RelativeOrAbsolute);
+                i.DecodePixelWidth = 1920;
                 i.EndInit();
                 this.content2.Source = i;
             }
@@ -109,6 +112,7 @@ namespace 孵化
                     string s = string.Format("res/content4/{0:D2}.png", value);
                     i.UriSource = new Uri(s, UriKind.RelativeOrAbsolute);
                 }
+                i.DecodePixelWidth = 1920;
                 i.EndInit();
                 this.content3.Source = i;
             }
@@ -278,11 +282,13 @@ namespace 孵化
             if (this.currentMainPic == MainPic.init || this.currentMainPic == MainPic.second)
             {
                 i.UriSource = new Uri("res/1.png", UriKind.RelativeOrAbsolute);
+                i.DecodePixelWidth = 1920;
                 this.currentMainPic = MainPic.first;
             }
             else
             {
                 i.UriSource = new Uri("res/2.png", UriKind.RelativeOrAbsolute);
+                i.DecodePixelWidth = 1980;
                 this.currentMainPic = MainPic.second;
             }
             i.EndInit();
@@ -296,6 +302,7 @@ namespace 孵化
             BitmapImage i = new BitmapImage();
             i.BeginInit();
             i.UriSource = new Uri("res/0.png", UriKind.RelativeOrAbsolute);
+            i.DecodePixelWidth = 7680;
             i.EndInit();
             this.currentMainPic = MainPic.init;
             this.MainPicImage.Source = i;
